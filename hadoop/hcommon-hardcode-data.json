@@ -1,0 +1,27 @@
+{
+    "fs.viewfs.rename.strategy": [
+        "org.apache.hadoop.fs.viewfs.TestViewFileSystemWithAuthorityLocalFileSystem#testRenameAcrossMounts1",
+        "org.apache.hadoop.fs.viewfs.TestViewFsWithAuthorityLocalFs#testRenameAcrossMounts1",
+        "org.apache.hadoop.fs.viewfs.TestViewFileSystemWithAuthorityLocalFileSystem#testRenameAcrossMounts2",
+        "org.apache.hadoop.fs.viewfs.TestViewFileSystemLocalFileSystem#testRenameAcrossMounts1",
+        "org.apache.hadoop.fs.viewfs.TestViewFsWithAuthorityLocalFs#testRenameAcrossMounts2",
+        "org.apache.hadoop.fs.viewfs.TestViewFileSystemLocalFileSystem#testRenameAcrossMounts2",
+        "org.apache.hadoop.fs.viewfs.TestViewFsLocalFs#testRenameAcrossMounts1",
+        "org.apache.hadoop.fs.viewfs.TestViewFsLocalFs#testRenameAcrossMounts2"
+    ],
+    "ha.failover-controller.graceful-fence.rpc-timeout.ms": [
+        "org.apache.hadoop.ha.TestFailoverController#testFailoverFromNonExistantServiceWithFencer"
+    ],
+    "hadoop.http.authentication.type": [
+        "org.apache.hadoop.security.TestAuthenticationFilter#testConfiguration"
+    ],
+    "ipc.client.rpc-timeout.ms": [
+        "org.apache.hadoop.ipc.TestIPC#testClientGetTimeout"
+    ],
+    "hadoop.http.authentication.kerberos.keytab": [
+        "org.apache.hadoop.security.TestAuthenticationFilter#testConfiguration"
+    ],
+    "io.mapfile.bloom.error.rate": [
+        "org.apache.hadoop.io.TestBloomMapFile#testMembershipTest"
+    ]
+}
