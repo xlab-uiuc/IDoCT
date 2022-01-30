@@ -1,20 +1,8 @@
-diff --git a/hadoop-common-project/hadoop-common/pom.xml b/hadoop-common-project/hadoop-common/pom.xml
-index 8a9ba1757b2..470126c0432 100644
---- a/hadoop-common-project/hadoop-common/pom.xml
-+++ b/hadoop-common-project/hadoop-common/pom.xml
-@@ -513,6 +513,7 @@
-       <plugin>
-         <groupId>org.apache.maven.plugins</groupId>
-         <artifactId>maven-surefire-plugin</artifactId>
-+        <version>3.0.0-M4</version>
-         <configuration>
-           <systemPropertyVariables>
-             <runningWithNative>${runningWithNative}</runningWithNative>
 diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
-index aedde6b5e62..d770715276f 100755
+index 24df9481..6451a97d 100755
 --- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
 +++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
-@@ -1195,6 +1195,14 @@ private String substituteVars(String expr) {
+@@ -1196,6 +1196,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
                                      + MAX_SUBST + " " + expr);
    }
    
@@ -29,7 +17,7 @@ index aedde6b5e62..d770715276f 100755
    String getenv(String name) {
      return System.getenv(name);
    }
-@@ -1219,11 +1227,14 @@ String getProperty(String key) {
+@@ -1220,11 +1228,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     *         or null if no such property exists.
     */
    public String get(String name) {
@@ -44,7 +32,7 @@ index aedde6b5e62..d770715276f 100755
      return result;
    }
  
-@@ -1311,11 +1322,14 @@ public String getTrimmed(String name, String defaultValue) {
+@@ -1312,11 +1323,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     *         its replacing property and null if no such property exists.
     */
    public String getRaw(String name) {
@@ -59,7 +47,7 @@ index aedde6b5e62..d770715276f 100755
      return result;
    }
  
-@@ -1363,6 +1377,10 @@ public void set(String name, String value) {
+@@ -1364,6 +1378,10 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
      set(name, value, null);
    }
    
@@ -70,7 +58,7 @@ index aedde6b5e62..d770715276f 100755
    /** 
     * Set the <code>value</code> of the <code>name</code> property. If 
     * <code>name</code> is deprecated, it also sets the <code>value</code> to
-@@ -1375,7 +1393,7 @@ public void set(String name, String value) {
+@@ -1376,7 +1394,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     * (For debugging).
     * @throws IllegalArgumentException when the value or name is null.
     */
@@ -79,7 +67,7 @@ index aedde6b5e62..d770715276f 100755
      Preconditions.checkArgument(
          name != null,
          "Property name must not be null");
-@@ -1387,6 +1405,7 @@ public void set(String name, String value, String source) {
+@@ -1388,6 +1406,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
      if (deprecations.getDeprecatedKeyMap().isEmpty()) {
        getProps();
      }
@@ -87,7 +75,7 @@ index aedde6b5e62..d770715276f 100755
      getOverlay().setProperty(name, value);
      getProps().setProperty(name, value);
      String newSource = (source == null ? "programmatically" : source);
-@@ -1397,6 +1416,7 @@ public void set(String name, String value, String source) {
+@@ -1398,6 +1417,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
        if(altNames != null) {
          for(String n: altNames) {
            if(!n.equals(name)) {
@@ -95,7 +83,7 @@ index aedde6b5e62..d770715276f 100755
              getOverlay().setProperty(n, value);
              getProps().setProperty(n, value);
              putIntoUpdatingResource(n, new String[] {newSource});
-@@ -1408,6 +1428,7 @@ public void set(String name, String value, String source) {
+@@ -1409,6 +1429,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
        String[] names = handleDeprecation(deprecationContext.get(), name);
        String altSource = "because " + name + " is deprecated";
        for(String n : names) {
@@ -103,7 +91,7 @@ index aedde6b5e62..d770715276f 100755
          getOverlay().setProperty(n, value);
          getProps().setProperty(n, value);
          putIntoUpdatingResource(n, new String[] {altSource});
-@@ -1480,11 +1501,14 @@ private synchronized Properties getOverlay() {
+@@ -1481,11 +1502,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     *         doesn't exist.                    
     */
    public String get(String name, String defaultValue) {
@@ -118,33 +106,3 @@ index aedde6b5e62..d770715276f 100755
      return result;
    }
  
-diff --git a/hadoop-hdfs-project/hadoop-hdfs/pom.xml b/hadoop-hdfs-project/hadoop-hdfs/pom.xml
-index fc40137c997..22d40ea9440 100644
---- a/hadoop-hdfs-project/hadoop-hdfs/pom.xml
-+++ b/hadoop-hdfs-project/hadoop-hdfs/pom.xml
-@@ -226,6 +226,7 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
-       <plugin>
-         <groupId>org.apache.maven.plugins</groupId>
-         <artifactId>maven-surefire-plugin</artifactId>
-+        <version>3.0.0-M4</version>
-         <configuration>
-           <systemPropertyVariables>
-             <runningWithNative>${runningWithNative}</runningWithNative>
-diff --git a/pom.xml b/pom.xml
-index 74a036e374a..bedccf2887b 100644
---- a/pom.xml
-+++ b/pom.xml
-@@ -142,6 +142,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
-   <build>
-     <pluginManagement>
-       <plugins>
-+        <plugin>
-+          <groupId>org.apache.maven.plugins</groupId>
-+          <artifactId>maven-surefire-plugin</artifactId>
-+          <configuration>
-+            <reportFormat>plain</reportFormat>
-+          </configuration>
-+        </plugin>
-         <plugin>
-           <groupId>org.apache.maven.plugins</groupId>
-           <artifactId>maven-dependency-plugin</artifactId>
