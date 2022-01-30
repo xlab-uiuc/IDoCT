@@ -1,5 +1,5 @@
 diff --git a/hadoop-common-project/hadoop-common/pom.xml b/hadoop-common-project/hadoop-common/pom.xml
-index 8a9ba1757b2..470126c0432 100644
+index 8a9ba175..470126c0 100644
 --- a/hadoop-common-project/hadoop-common/pom.xml
 +++ b/hadoop-common-project/hadoop-common/pom.xml
 @@ -513,6 +513,7 @@
@@ -11,10 +11,10 @@ index 8a9ba1757b2..470126c0432 100644
            <systemPropertyVariables>
              <runningWithNative>${runningWithNative}</runningWithNative>
 diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
-index aedde6b5e62..24df9481f35 100755
+index aedde6b5..24df9481 100755
 --- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
 +++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
-@@ -786,6 +786,7 @@ private void handleDeprecation() {
+@@ -786,6 +786,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
      // Add default resources
      addDefaultResource("core-default.xml");
      addDefaultResource("core-site.xml");
@@ -22,11 +22,23 @@ index aedde6b5e62..24df9481f35 100755
  
      // print deprecation warning if hadoop-site.xml is found in classpath
      ClassLoader cL = Thread.currentThread().getContextClassLoader();
+diff --git a/hadoop-common-project/hadoop-common/src/main/resources/core-ctest.xml b/hadoop-common-project/hadoop-common/src/main/resources/core-ctest.xml
+new file mode 100644
+index 00000000..d0ff3399
+--- /dev/null
++++ b/hadoop-common-project/hadoop-common/src/main/resources/core-ctest.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0"?>
++<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
++
++<configuration>
++
++</configuration>
 diff --git a/hadoop-hdfs-project/hadoop-hdfs-client/src/main/java/org/apache/hadoop/hdfs/HdfsConfiguration.java b/hadoop-hdfs-project/hadoop-hdfs-client/src/main/java/org/apache/hadoop/hdfs/HdfsConfiguration.java
-index 65efaf9dfae..1f3f7a1454f 100644
+index 65efaf9d..1f3f7a14 100644
 --- a/hadoop-hdfs-project/hadoop-hdfs-client/src/main/java/org/apache/hadoop/hdfs/HdfsConfiguration.java
 +++ b/hadoop-hdfs-project/hadoop-hdfs-client/src/main/java/org/apache/hadoop/hdfs/HdfsConfiguration.java
-@@ -38,6 +38,7 @@
+@@ -38,6 +38,7 @@ public class HdfsConfiguration extends Configuration {
      Configuration.addDefaultResource("hdfs-rbf-default.xml");
      Configuration.addDefaultResource("hdfs-site.xml");
      Configuration.addDefaultResource("hdfs-rbf-site.xml");
@@ -35,7 +47,7 @@ index 65efaf9dfae..1f3f7a1454f 100644
  
    public HdfsConfiguration() {
 diff --git a/hadoop-hdfs-project/hadoop-hdfs/pom.xml b/hadoop-hdfs-project/hadoop-hdfs/pom.xml
-index fc40137c997..22d40ea9440 100644
+index fc40137c..22d40ea9 100644
 --- a/hadoop-hdfs-project/hadoop-hdfs/pom.xml
 +++ b/hadoop-hdfs-project/hadoop-hdfs/pom.xml
 @@ -226,6 +226,7 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -46,8 +58,20 @@ index fc40137c997..22d40ea9440 100644
          <configuration>
            <systemPropertyVariables>
              <runningWithNative>${runningWithNative}</runningWithNative>
+diff --git a/hadoop-hdfs-project/hadoop-hdfs/src/main/resources/hdfs-ctest.xml b/hadoop-hdfs-project/hadoop-hdfs/src/main/resources/hdfs-ctest.xml
+new file mode 100644
+index 00000000..d0ff3399
+--- /dev/null
++++ b/hadoop-hdfs-project/hadoop-hdfs/src/main/resources/hdfs-ctest.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0"?>
++<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
++
++<configuration>
++
++</configuration>
 diff --git a/pom.xml b/pom.xml
-index 74a036e374a..bedccf2887b 100644
+index 74a036e3..bedccf28 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -142,6 +142,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
