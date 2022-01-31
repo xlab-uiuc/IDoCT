@@ -17,7 +17,8 @@ def main(argv):
     for i in range(2, len(argv)):
         param, value = argv[i].split('=')
         param_value_dict[param] = value
-    test_input = extract_conf_diff_from_pair(param_value_dict)
+    # test_input = extract_conf_diff_from_pair(param_value_dict)
+    test_input = param_value_dict
     test_conf_file(test_input, ctestname)
     print(">>>>[ctest_core] total time: {} seconds".format(time.time() - s))
 
