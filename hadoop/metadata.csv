@@ -1,0 +1,2 @@
+${Testname}#${Methodname}, parameters name, goodvalue (using list), badvalue (using list)
+org.apache.hadoop.crypto.TestCryptoStreams#testAvailable, hadoop.security.crypto.cipher.suite, [AES/CTR/NoPadding], [AES/CTR/Padding]
