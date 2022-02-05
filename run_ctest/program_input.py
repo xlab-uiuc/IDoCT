@@ -6,7 +6,7 @@ p_input = {
     # name of the project, i.e. hadoop-common, hadoop-hdfs
     "project": "hadoop-common", # string
     # path to param -> tests json mapping
-    "mapping_path": "../hadoop/hadoop-common-mapping.json", # string
+    "mapping_path": "../generate_mapping/results/hadoop-common/param_unset_getter_map.json", # string
     # input directory hosting configuration files to be test, target-project-format specific
     "conf_file_dir": "sample-hadoop-common", # string
     # display the terminal output live, without saving any results
