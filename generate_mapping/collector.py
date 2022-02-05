@@ -29,9 +29,9 @@ class Collector:
             param = line.split(" ")[1]
             assert param in self.params, "wrong parameter"
 
-            if param not in self.param_getter_map.keys():
-                self.param_getter_map[param] = set()
-            self.param_getter_map[param].add(class_pound_method)        
+            if class_pound_method not in self.param_getter_map.keys():
+                self.param_getter_map[class_pound_method] = set()
+            self.param_getter_map[class_pound_method].add(param)      
 
     def parse_setter_record_file(self):
         for line in open(self.setter_record_file).readlines():
@@ -40,9 +40,9 @@ class Collector:
             param = line.split(" ")[1]
             assert param in self.params, "wrong parameter"
 
-            if param not in self.param_setter_map.keys():
-                self.param_setter_map[param] = set()
-            self.param_setter_map[param].add(class_pound_method)
+            if class_pound_method not in self.param_setter_map.keys():
+                self.param_setter_map[class_pound_method] = set()
+            self.param_setter_map[class_pound_method].add(param)
             
     def generate_unset_getter_mapping(self):
         for key in self.param_getter_map.keys():
@@ -69,7 +69,8 @@ class Collector:
 
     def sanity_check(self):
         for key in self.param_unset_getter_map.keys():
-            assert key in self.params, "error"
+            for value in self.param_unset_getter_map[key]:
+                assert value in self.params, "error"
             if key not in self.param_setter_map.keys():
                 assert self.param_unset_getter_map[key] == self.param_getter_map[key]
             else:
