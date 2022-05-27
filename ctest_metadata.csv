@@ -124,3 +124,5 @@ https://github.com/apache/hadoop.git, a3b9c37a397ad4188041dd80621bdeefc46885f2, 
 https://github.com/apache/hadoop.git, a3b9c37a397ad4188041dd80621bdeefc46885f2, hadoop.zk.timeout-ms,org.apache.hadoop.util.curator.TestZKCuratorManager#testChildren, 10000, GOOD, PASS
 https://github.com/apache/hadoop.git, a3b9c37a397ad4188041dd80621bdeefc46885f2, hadoop.zk.timeout-ms,org.apache.hadoop.util.curator.TestZKCuratorManager#testChildren, 20000, GOOD, PASS
 https://github.com/apache/hadoop.git, a3b9c37a397ad4188041dd80621bdeefc46885f2, hadoop.zk.timeout-ms,org.apache.hadoop.util.curator.TestZKCuratorManager#testChildren, 30000, GOOD, PASS
+https://github.com/apache/hadoop.git, a3b9c37a397ad4188041dd80621bdeefc46885f2, hadoop.security.crypto.cipher.suite,org.apache.hadoop.crypto.TestCryptoOutputStreamClosing#testOutputStreamClosing, AES/CTR/NoPadding, GOOD, PASS,
+https://github.com/apache/hadoop.git, a3b9c37a397ad4188041dd80621bdeefc46885f2, hadoop.security.crypto.cipher.suite,org.apache.hadoop.crypto.TestCryptoOutputStreamClosing#testOutputStreamClosing, AES/CTR/Padding, BAD, FAIL,
