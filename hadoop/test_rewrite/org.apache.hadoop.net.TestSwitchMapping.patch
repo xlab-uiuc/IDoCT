@@ -1,0 +1,20 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/net/TestSwitchMapping.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/net/TestSwitchMapping.java
+index b5de661caca..589b59ac8dd 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/net/TestSwitchMapping.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/net/TestSwitchMapping.java
+@@ -70,15 +70,9 @@ public void testCachingRelays() throws Throwable {
+   public void testCachingRelaysStringOperations() throws Throwable {
+     Configuration conf = new Configuration();
+     String scriptname = "mappingscript.sh";
+-    conf.set(CommonConfigurationKeys.NET_TOPOLOGY_SCRIPT_FILE_NAME_KEY,
+-             scriptname);
+     ScriptBasedMapping scriptMapping = new ScriptBasedMapping(conf);
+     assertTrue("Did not find " + scriptname + " in " + scriptMapping,
+                scriptMapping.toString().contains(scriptname));
+-    CachedDNSToSwitchMapping mapping =
+-        new CachedDNSToSwitchMapping(scriptMapping);
+-    assertTrue("Did not find " + scriptname + " in " + mapping,
+-               mapping.toString().contains(scriptname));
+   }
+ 
+   /**
