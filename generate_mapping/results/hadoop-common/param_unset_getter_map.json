@@ -1205,6 +1205,9 @@
     "hadoop.security.java.secure.random.algorithm",
     "hadoop.security.crypto.cipher.suite"
   ],
+  "org.apache.hadoop.crypto.TestCryptoStreamsWithJceAesCtrCryptoCodec#testSecureRandomAlgorithmConfiguration": [
+    "hadoop.security.java.secure.random.algorithm"
+  ],
   "org.apache.hadoop.crypto.TestCryptoStreamsWithJceAesCtrCryptoCodec#testSyncable": [
     "hadoop.security.crypto.jce.provider",
     "hadoop.security.java.secure.random.algorithm",

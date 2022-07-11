@@ -1,0 +1,6 @@
+project	param	setter	
+hadoop-common	hadoop.security.key.provider.path	org.apache.hadoop.crypto.key.TestKeyProviderFactory#testFactory	
+hadoop-common	hadoop.security.key.provider.path	org.apache.hadoop.crypto.key.kms.TestLoadBalancingKMSClientProvider#testClientRetriesNonIdempotentOpWithSocketTimeoutExceptionFails	
+hadoop-common	identity-provider.impl	org.apache.hadoop.ipc.TestIdentityProviders#testPluggableIdentityProvider	
+hadoop-common	net.topology.script.file.name	org.apache.hadoop.net.TestSwitchMapping#testCachingRelaysStringOperations	
+hadoop-common	hadoop.security.credential.provider.path	org.apache.hadoop.security.TestLdapGroupsMapping#testConfGetPasswordUsingAlias	

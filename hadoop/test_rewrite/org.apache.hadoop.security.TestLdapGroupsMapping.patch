@@ -1,0 +1,12 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestLdapGroupsMapping.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestLdapGroupsMapping.java
+index aba39971877..705439b5d6d 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestLdapGroupsMapping.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestLdapGroupsMapping.java
+@@ -317,7 +317,6 @@ public void testConfGetPasswordUsingAlias() throws Exception {
+ 
+     File file = new File(testDir, "test.jks");
+     file.delete();
+-    conf.set(CredentialProviderFactory.CREDENTIAL_PROVIDER_PATH, ourUrl);
+ 
+     // Set alias
+     String bindpassAlias = "bindpassAlias";
