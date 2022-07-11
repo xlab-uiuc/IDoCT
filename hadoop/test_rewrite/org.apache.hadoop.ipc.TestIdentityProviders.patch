@@ -1,0 +1,29 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/ipc/TestIdentityProviders.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/ipc/TestIdentityProviders.java
+index 263841246bf..7d0506530c5 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/ipc/TestIdentityProviders.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/ipc/TestIdentityProviders.java
+@@ -52,20 +52,18 @@ public int getPriorityLevel() {
+   }
+ 
+   @Test
+-  public void testPluggableIdentityProvider() {
++  public void testPluggableIdentityProvider() throws ClassNotFoundException {
+     Configuration conf = new Configuration();
+-    conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY,
+-      "org.apache.hadoop.ipc.UserIdentityProvider");
+ 
+     List<IdentityProvider> providers = conf.getInstances(
+       CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY,
+       IdentityProvider.class);
+-
++      
+     assertTrue(providers.size() == 1);
+-
+     IdentityProvider ip = providers.get(0);
+     assertNotNull(ip);
+-    assertEquals(ip.getClass(), UserIdentityProvider.class);
++    Class<?> clazz = Class.forName(conf.get(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY));
++    assertEquals(ip.getClass().getName(), clazz.getName());
+   }
+ 
+   @Test

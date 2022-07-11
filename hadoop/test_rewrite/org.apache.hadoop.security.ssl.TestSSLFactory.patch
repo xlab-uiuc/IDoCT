@@ -1,0 +1,26 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/ssl/TestSSLFactory.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/ssl/TestSSLFactory.java
+index 9b4d1f205ff..53db6616062 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/ssl/TestSSLFactory.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/ssl/TestSSLFactory.java
+@@ -432,7 +432,9 @@ private void checkSSLFactoryInitWithPasswords(SSLFactory.Mode mode,
+       confKeyPassword = null;
+     }
+     if (mode == SSLFactory.Mode.SERVER) {
+-      sslConfFileName = "ssl-server.xml";
++      // patch to fetch and assign value of hadoop.ssl.server.conf instead of hard-coding
++      Configuration conf = new Configuration();
++      sslConfFileName = conf.get(SSLFactory.SSL_SERVER_CONF_KEY, SSLFactory.SSL_SERVER_CONF_DEFAULT);
+       sslConf = KeyStoreTestUtil.createServerSSLConfig(keystore, confPassword,
+         confKeyPassword, truststore, trustPassword);
+       if (useCredProvider) {
+@@ -458,6 +460,10 @@ private void checkSSLFactoryInitWithPasswords(SSLFactory.Mode mode,
+     SSLFactory sslFactory = new SSLFactory(mode, conf);
+     try {
+       sslFactory.init();
++      // patch to verify the values of hadoop.security.credential.provider.path param
++      CredentialProviderFactory.getProviders(conf);
++      // patch to verify the values of hadoop.ssl.enabled.protocols
++      sslFactory.createSSLEngine();
+     } finally {
+       sslFactory.destroy();
+     }
