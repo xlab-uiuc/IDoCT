@@ -15,7 +15,9 @@ def main(argv):
     ctestname = argv[1]
     param_value_dict = {}
     for i in range(2, len(argv)):
-        param, value = argv[i].split('=')
+        equal_index = argv[i].index('=')
+        param = argv[i][0:equal_index]
+        value = argv[i][equal_index + 1:]
         param_value_dict[param] = value
     # test_input = extract_conf_diff_from_pair(param_value_dict)
     test_input = param_value_dict
