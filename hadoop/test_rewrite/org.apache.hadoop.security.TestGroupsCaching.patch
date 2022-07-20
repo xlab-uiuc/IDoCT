@@ -1,0 +1,15 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestGroupsCaching.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestGroupsCaching.java
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestGroupsCaching.java	(revision a3b9c37a397ad4188041dd80621bdeefc46885f2)
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestGroupsCaching.java	(date 1658335090667)
+@@ -713,11 +713,6 @@
+   @Test
+   public void testExceptionCallingLoadWithoutBackgroundRefreshReturnsOldValue()
+       throws Exception {
+-    conf.setLong(
+-        CommonConfigurationKeys.HADOOP_SECURITY_GROUPS_CACHE_SECS, 1);
+-    conf.setBoolean(
+-        CommonConfigurationKeys.HADOOP_SECURITY_GROUPS_CACHE_BACKGROUND_RELOAD,
+-        false);
+     FakeTimer timer = new FakeTimer();
+     final Groups groups = new Groups(conf, timer);
+     groups.cacheGroupsAdd(Arrays.asList(myGroups));
