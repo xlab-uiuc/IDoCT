@@ -533,18 +533,18 @@ https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f185,
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f172,fs.client.resolve.remote.symlinks,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,TRUE,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f173,fs.client.resolve.remote.symlinks,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,FALSE,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f174,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,21,GOOD,PASS
-https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f175,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,-1,BAD,PASS
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f175,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,-1,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f176,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,20,GOOD,PASS
-https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f177,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,443,BAD,PASS
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f177,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,443,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f178,fs.AbstractFileSystem.ftp.impl,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,org.apache.hadoop.fs.ftp.FtpFs,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f179,fs.AbstractFileSystem.ftp.impl,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,  ,BAD,FAIL
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f180,fs.AbstractFileSystem.ftp.impl,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithOutPort,noClass,BAD,FAIL
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f172,fs.client.resolve.remote.symlinks,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,TRUE,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f173,fs.client.resolve.remote.symlinks,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,FALSE,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f174,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,21,GOOD,PASS
-https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f175,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,-1,BAD,PASS
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f175,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,-1,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f176,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,20,GOOD,PASS
-https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f177,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,443,BAD,PASS
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f177,fs.ftp.host.port,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,443,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f178,fs.AbstractFileSystem.ftp.impl,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,org.apache.hadoop.fs.ftp.FtpFs,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f179,fs.AbstractFileSystem.ftp.impl,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,  ,BAD,FAIL
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f180,fs.AbstractFileSystem.ftp.impl,org.apache.hadoop.fs.TestDelegateToFileSystem#testDefaultURIwithPort,noClass,BAD,FAIL
@@ -718,8 +718,8 @@ https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f177,
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f178,hadoop.security.dns.log-slow-lookups.threshold.ms,org.apache.hadoop.security.TestSecurityUtil#testSetAuthenticationMethod,2147483648,BAD,FAIL
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f179,hadoop.security.dns.log-slow-lookups.enabled,org.apache.hadoop.security.TestSecurityUtil#testSetAuthenticationMethod,FALSE,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f180,hadoop.security.dns.log-slow-lookups.enabled,org.apache.hadoop.security.TestSecurityUtil#testSetAuthenticationMethod,TRUE,GOOD,PASS
-https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f172,hadoop.security.credential.provider.path,org.apache.hadoop.security.TestSecurityUtil#testAuthPlainPasswordProperty,"provider.com,path.com",GOOD,FAIL
-https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f173,hadoop.security.credential.provider.path,org.apache.hadoop.security.TestSecurityUtil#testAuthPlainPasswordProperty,  ,GOOD,FAIL
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f172,hadoop.security.credential.provider.path,org.apache.hadoop.security.TestSecurityUtil#testAuthPlainPasswordProperty,"provider.com,path.com",BAD,FAIL
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f173,hadoop.security.credential.provider.path,org.apache.hadoop.security.TestSecurityUtil#testAuthPlainPasswordProperty,  ,BAD,FAIL
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f174,hadoop.security.dns.log-slow-lookups.enabled,org.apache.hadoop.security.TestSecurityUtil#testAuthPlainPasswordProperty,FALSE,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f175,hadoop.security.dns.log-slow-lookups.enabled,org.apache.hadoop.security.TestSecurityUtil#testAuthPlainPasswordProperty,TRUE,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f176,hadoop.security.credential.clear-text-fallback,org.apache.hadoop.security.TestSecurityUtil#testAuthPlainPasswordProperty,TRUE,GOOD,PASS
