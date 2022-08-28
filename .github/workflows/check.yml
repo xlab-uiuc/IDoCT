@@ -1,7 +1,7 @@
-name: learn-github-actions
+name: check
 on: [push]
 jobs:
-  check pull result:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy docker enviroment
