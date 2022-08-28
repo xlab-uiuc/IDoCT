@@ -9,6 +9,6 @@ jobs:
         run: |
           git clone https://github.com/xlab-uiuc/openctest.git
           pwd
-          cd opentest
+          cd openctest
           ls
           pwd
