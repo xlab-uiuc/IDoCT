@@ -2,7 +2,7 @@ name: check
 on: [push]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Deploy docker enviroment
         uses: docker://xylian/ubuntu:xlab
