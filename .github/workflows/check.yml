@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - run: git clone https://github.com/xlab-uiuc/openctest.git
-      - run: ll
+      - run: ls
       - run: cd openctest/data
       - run: pwd
