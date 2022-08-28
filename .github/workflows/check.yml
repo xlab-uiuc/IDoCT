@@ -5,7 +5,9 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      - run: git clone https://github.com/xlab-uiuc/openctest.git
-      - run: ls
-      - run: cd openctest
-      - run: ls
+      - run: |
+        git clone https://github.com/xlab-uiuc/openctest.git
+        pwd
+        cd opentest
+        ls
+        pwd
