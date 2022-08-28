@@ -7,5 +7,5 @@ jobs:
     steps:
       - run: git clone https://github.com/xlab-uiuc/openctest.git
       - run: ls
-      - run: cd openctest/data
+      - run: cd openctest
       - run: ls
