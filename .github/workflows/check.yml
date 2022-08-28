@@ -1,0 +1,7 @@
+name: learn-github-actions
+on: [push]
+jobs:
+  check pull result:
+    steps:
+      - name: Deploy docker enviroment
+        uses: docker://xylian/ubuntu:xlab
