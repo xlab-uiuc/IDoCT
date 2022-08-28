@@ -1,9 +1,9 @@
+
 name: check
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      - name: Deploy docker enviroment
-        uses: docker://xylian/ubuntu:xlab
-      - run: java -version
+      - run: git clone https://github.com/xlab-uiuc/openctest.git
+      - run: pwd
