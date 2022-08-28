@@ -6,4 +6,4 @@ jobs:
     steps:
       - name: Deploy docker enviroment
         uses: docker://xylian/ubuntu:xlab
-      - run: java -verion
+      - run: java -version
