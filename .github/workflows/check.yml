@@ -5,6 +5,9 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v29.0.1
