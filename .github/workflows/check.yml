@@ -12,6 +12,10 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v29.0.1
       - name: Run step when a file changes
+        run: |
+          for file in ${{ steps.changed-files.outputs.modified_files }}; do
+            echo "$file was added"
+          done
         if: contains(steps.changed-files.outputs.modified_files, 'ctest_metadata.csv')
         run: |
           git diff ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }} --color=always|perl -wlne 'print $1 if /^\e\[32m\+\e\[m\e\[32m(.*)\e\[m$/'
