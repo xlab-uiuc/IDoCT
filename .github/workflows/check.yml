@@ -8,7 +8,8 @@ jobs:
       - name: Check
         run: |
           git clone https://github.com/xlab-uiuc/openctest.git
-          pwd
-          cd openctest
-          ls
-          pwd
+          git clone https://github.com/apache/hadoop.git
+          cd hadoop
+          mvn clean install -DskipTests -pl hadoop-common-project/hadoop-common -am
+
+
