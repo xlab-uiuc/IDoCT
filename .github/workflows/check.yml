@@ -1,6 +1,6 @@
 
 name: check
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -11,14 +11,9 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v29.0.1
-      - name: List all changed files
+      - name: Run step when a file changes
+        if: contains(steps.changed-files.outputs.modified_files, 'ctest_metadata.csv')
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            git diff $file
-          done
-          echo "${{ github.event.pull_request.head.sha }}"
-          echo "${{ github.event.pull_request.base.sha }}"
           git diff ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }} --color=always|perl -wlne 'print $1 if /^\e\[32m\+\e\[m\e\[32m(.*)\e\[m$/'
-          echo "Hello World"
 
 
