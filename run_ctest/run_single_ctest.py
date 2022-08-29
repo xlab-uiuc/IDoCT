@@ -40,4 +40,4 @@ if __name__ == "__main__":
     print("record python script input")
     for i in sys.argv:
         print(i)
-    main(sys.argv)  
+    #main(sys.argv)  
