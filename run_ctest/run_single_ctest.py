@@ -37,4 +37,7 @@ def test_conf_file(test_input, ctestname):
         print(">>>>[ctest_core] The single ctest PASS")
 
 if __name__ == "__main__":
+    print("record python script input")
+    for i in sys.argv:
+        print(i)
     main(sys.argv)  
