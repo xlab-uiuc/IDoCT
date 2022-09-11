@@ -14,7 +14,7 @@ from utils import (
 common_data = {
     "REPO": re.compile(r"^https://github.com/apache/hadoop.git$"),
     "SHA": re.compile(r"^a3b9c37a397ad4188041dd80621bdeefc46885f2$"),
-    "TEST_NAME": re.compile(r"^.*#test.*$"),
+    "TEST_NAME": re.compile(r"^.*#.*$"),
 }
 
 
