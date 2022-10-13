@@ -23,8 +23,8 @@ class Runner:
         self.getter_list = []
         self.aggressive = aggressive
 
-        self.params = utils.get_default_params_from_file(self.module)
-        print("num of params: " + str(len(self.params)))
+        # self.params = utils.get_default_params_from_file(self.module)
+        # print("num of params: " + str(len(self.params)))
 
         os.makedirs("results/%s/logs/" % (self.module), exist_ok=True)
 
@@ -42,42 +42,42 @@ class Runner:
     def traceInTestCode(self, trace):
         if "Test" in trace:
             return True
-        if self.module == "hadoop-common" or self.module == "hadoop-hdfs" or self.module == "hbase-server":
-            if "MiniDFSCluster" in trace:
-                return True
-            if "MiniZKFCCluster" in trace:
-                return True
-            if "MiniJournalCluster" in trace:
-                return True
-            if "MiniQJMHACluster" in trace:
-                return True
-            if "MiniHBaseCluster" in trace:
-                return True
-            if "MockFileSystem" in trace:
-                return True
-        if self.module == "alluxio-core":
-            if "alluxio.ConfigurationRule" in trace:
-                return True
+        # if self.module == "hadoop-common" or self.module == "hadoop-hdfs" or self.module == "hbase-server":
+        #     if "MiniDFSCluster" in trace:
+        #         return True
+        #     if "MiniZKFCCluster" in trace:
+        #         return True
+        #     if "MiniJournalCluster" in trace:
+        #         return True
+        #     if "MiniQJMHACluster" in trace:
+        #         return True
+        #     if "MiniHBaseCluster" in trace:
+        #         return True
+        #     if "MockFileSystem" in trace:
+        #         return True
+        # if self.module == "alluxio-core":
+        #     if "alluxio.ConfigurationRule" in trace:
+        #         return True
         return False
 
     def skipTrace(self, trace):
         if trace == "java.lang.Thread":
             return True
-        if "sun.reflect" in trace:
-            return True
-        if self.module == "hadoop-common" or self.module == "hadoop-hdfs" or self.module == "hbase-server":
-            if "org.apache.hadoop.conf" in trace and "Test" not in trace:
-                return True
-            if "org.mockito" in trace:
-                return True
-        if self.module == "zookeeper-server":
-            if "org.apache.zookeeper.server.quorum.QuorumPeerConfig" in trace:
-                return True
-            if "org.apache.zookeeper.server.ServerConfig" in trace:
-                return True
-        if self.module == "alluxio-core":
-            if "alluxio.conf" in trace and "Test" not in trace:
-                return True
+        # if "sun.reflect" in trace:
+        #     return True
+        # if self.module == "hadoop-common" or self.module == "hadoop-hdfs" or self.module == "hbase-server":
+        #     if "org.apache.hadoop.conf" in trace and "Test" not in trace:
+        #         return True
+        #     if "org.mockito" in trace:
+        #         return True
+        # if self.module == "zookeeper-server":
+        #     if "org.apache.zookeeper.server.quorum.QuorumPeerConfig" in trace:
+        #         return True
+        #     if "org.apache.zookeeper.server.ServerConfig" in trace:
+        #         return True
+        # if self.module == "alluxio-core":
+        #     if "alluxio.conf" in trace and "Test" not in trace:
+        #         return True
         return False
 
     def setInTest(self, stacktrace):
@@ -102,21 +102,21 @@ class Runner:
                 assert line.split(" ")[0] == "[CTEST][GET-PARAM]"
                 assert line.count(" ") == 1, "more than one whitespace in " + line
                 param_name = line.split(" ")[1]
-                if param_name in self.params:
-                    is_getter = True 
-                    self.getter_record.write(method + " " + param_name + "\n")
-                    self.getter_record.flush()
+                # if param_name in self.params:
+                #     is_getter = True 
+                #     self.getter_record.write(method + " " + param_name + "\n")
+                #     self.getter_record.flush()
             elif "[CTEST][SET-PARAM]" in line:
                 line = line[line.find("[CTEST][SET-PARAM]"):]
                 assert line.startswith("[CTEST][SET-PARAM] "), "wrong line: " + line
                 assert line.split(" ")[0] == "[CTEST][SET-PARAM]"
                 assert line.count(" ") == 2, "more than one whitespace in " + line
                 param_name = line.split(" ")[1]
-                if param_name in self.params:
-                    if self.aggressive or self.setInTest(line.split(" ")[2]):
-                        is_setter = True
-                        self.setter_record.write(method + " " + param_name + "\n")
-                        self.setter_record.flush()
+                # if param_name in self.params:
+                #     if self.aggressive or self.setInTest(line.split(" ")[2]):
+                #         is_setter = True
+                #         self.setter_record.write(method + " " + param_name + "\n")
+                #         self.setter_record.flush()
 
         if is_getter or is_setter:
             if is_getter:
@@ -213,7 +213,7 @@ class Runner:
 
 if __name__ == "__main__":
     s = time.time()
-    sys.argv.append("hadoop-common")
+    sys.argv.append("transport")
     usage = "usage: python3 runner.py project [options]"
     parser = OptionParser(usage=usage)
     parser.add_option("-a", action="store_true", dest="aggressive", default=False,
