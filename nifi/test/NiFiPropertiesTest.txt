@@ -1,0 +1,3 @@
+NiFiPropertiesTest
+/home/yinmeng2/Proj/nifi/nifi-commons/nifi-properties/target/surefire-reports/org.apache.nifi.util.NiFiPropertiesTest-output.txt
+testProperties

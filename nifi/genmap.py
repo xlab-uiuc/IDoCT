@@ -1,0 +1,49 @@
+import constants
+import os
+
+res = {}
+
+def params_in_report(report_path):
+    params = []
+    report = open(report_path, 'r')
+    Lines = report.readlines()
+    for line in Lines:
+        line = line.strip()
+        info = line.split(',')
+        print(info[constants.PRAM_IDX])
+        params.append(info[constants.PRAM_IDX])
+    print(params)
+    return params
+
+
+
+def parse_and_run_test(test_path):
+    test = open(test_path, 'r')
+    Lines = test.readlines()
+    cur_test_file = None
+    report_path = None
+    for i, line in enumerate(Lines):
+        # remove line breaks
+        line = line.strip()
+        if i == 0:
+            cur_test_file = line
+        elif i == 1:
+            report_path = line
+        else:
+            cur_test_name = cur_test_file+"#"+line
+            # run the test
+            command = "cd ../../nifi;"
+            command += "mvn install -pl nifi-commons/nifi-properties/ -am -DskipTest;"
+            command += 'mvn -pl nifi-commons/nifi-properties/ test -Dtest="'+cur_test_name+'"'
+            os.system(command)
+
+            # get params
+            params = params_in_report(report_path)
+            res[cur_test_name] = params.copy()
+    
+
+if __name__ == "__main__":
+    print("running genmap")
+    print(constants.TEST_INFO_PATH)
+    parse_and_run_test(constants.TEST_INFO_PATH)
+    print(res)
