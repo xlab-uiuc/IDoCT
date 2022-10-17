@@ -1,5 +1,6 @@
 import constants
 import os
+import json
 
 res = {}
 
@@ -10,9 +11,7 @@ def params_in_report(report_path):
     for line in Lines:
         line = line.strip()
         info = line.split(',')
-        print(info[constants.PRAM_IDX])
         params.append(info[constants.PRAM_IDX])
-    print(params)
     return params
 
 
@@ -32,8 +31,8 @@ def parse_and_run_test(test_path):
         else:
             cur_test_name = cur_test_file+"#"+line
             # run the test
-            command = "cd ../../nifi;"
-            command += "mvn install -pl nifi-commons/nifi-properties/ -am -DskipTest;"
+            command = constants.CD_NIFI_PATH
+            command += constants.MVN_INSTALL_NIFI_COMMONS
             command += 'mvn -pl nifi-commons/nifi-properties/ test -Dtest="'+cur_test_name+'"'
             os.system(command)
 
@@ -41,9 +40,9 @@ def parse_and_run_test(test_path):
             params = params_in_report(report_path)
             res[cur_test_name] = params.copy()
     
+def output_res(output_path):
+    json.dump(res, open(output_path, "w"), indent=2)
 
 if __name__ == "__main__":
-    print("running genmap")
-    print(constants.TEST_INFO_PATH)
     parse_and_run_test(constants.TEST_INFO_PATH)
-    print(res)
+    output_res(constants.OUTPUT_PATH)
