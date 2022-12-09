@@ -403,3 +403,7 @@ https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,ha
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,io.file.buffer.size,org.apache.hadoop.io.compress.TestCodec#testDeflateCodec,1024,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,io.file.buffer.size,org.apache.hadoop.io.compress.TestCodec#testDeflateCodec,2147483648,GOOD,FAIL
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,io.file.buffer.size,org.apache.hadoop.io.compress.TestCodec#testDeflateCodec,0,BAD,FAIL
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.service.shutdown.timeout,org.apache.hadoop.service.launcher.TestServiceConf#testRunService,100s,GOOD,PASS
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.service.shutdown.timeout,org.apache.hadoop.service.launcher.TestServiceConf#testRunService,0s,BAD,PASS
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.service.shutdown.timeout,org.apache.hadoop.service.launcher.TestServiceConf#testRunService,-1s,BAD,PASS
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.service.shutdown.timeout,org.apache.hadoop.service.launcher.TestServiceConf#testRunService,10.5s,BAD,FAIL
