@@ -55075,7 +55075,9 @@
     "hadoop.user.group.static.mapping.overrides",
     "hadoop.security.groups.negative-cache.secs",
     "hadoop.security.groups.cache.warn.after.ms",
-    "hadoop.security.groups.shell.command.timeout"
+    "hadoop.security.groups.shell.command.timeout",
+    "hadoop.security.groups.cache.secs",
+    "hadoop.security.groups.cache.background.reload"
   ],
   "org.apache.hadoop.security.TestGroupsCaching#testExceptionOnBackgroundRefreshHandled": [
     "hadoop.security.groups.cache.background.reload.threads",
