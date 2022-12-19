@@ -849,10 +849,10 @@ https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,ha
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.kerberos.min.seconds.before.relogin,org.apache.hadoop.security.TestFixKerberosTicketOrder#test,60,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.kerberos.min.seconds.before.relogin,org.apache.hadoop.security.TestFixKerberosTicketOrder#test,100,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.kerberos.min.seconds.before.relogin,org.apache.hadoop.security.TestFixKerberosTicketOrder#test,120,GOOD,PASS
-https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.security.groups.cache.secs,org.apache.hadoop.security.TestFixKerberosTicketOrder#test
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.security.groups.cache.secs,org.apache.hadoop.security.TestFixKerberosTicketOrder#test,100,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.security.group.mapping,org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT,org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.security.auth_to_local.mechanism,org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT,hadoop,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.security.auth_to_local.mechanism,org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT,MIT,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.security.auth_to_local.mechanism,org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT,HADOOP,GOOD,PASS
 https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.security.auth_to_local.mechanism,org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT,uiuc,BAD,FAIL
-https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.kerberos.min.seconds.before.relogin,org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT
+https://github.com/apache/hadoop.git,a3b9c37a397ad4188041dd80621bdeefc46885f2,hadoop.kerberos.min.seconds.before.relogin,org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT,60,GOOD,PASS
