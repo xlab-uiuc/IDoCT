@@ -1,5 +1,8 @@
-import os, sys, csv, subprocess
-from utils import root_path
+import csv
+import os
+import subprocess
+import sys
+from utils import root_path, log_esp_error
 
 def check_result(log, filename, begin_line, end_line):
     with open(filename, 'r') as csvfile:
@@ -8,7 +11,7 @@ def check_result(log, filename, begin_line, end_line):
             line = csv_reader[i]
             if len(line) != 0:
                 if (run_ctest(line[3], line[2], line[4], line[6]) == False):
-                    log_std_error(filename, log, i, line, "RESULT")
+                    log_esp_error(filename, log, "In line" + str(i+1) + ": EXPECTATION(PASS|FAIL) is wrong")
 
 def run_ctest(testName, ParameterName, Value, Result):
     os.chdir(os.path.join(root_path, "run_ctest"))
