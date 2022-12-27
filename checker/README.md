@@ -28,6 +28,6 @@ $ pip install -r format_checker/requirements.txt
 Running this tool locally only requires running `main.py` from the root directory:
 
 ```
-$ python main.py 
+$ python main.py $ctest_matadata path$ $begin_line$ $end_line$
 ```
 In case your Python version is 2.7 but your your Python3 version is 3.7 or above (see step 1), you should run it using `python3` instead of `python`. 
