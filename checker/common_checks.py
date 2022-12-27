@@ -9,23 +9,12 @@ from utils import (
     log_esp_error,
 )
 
-
 # Contains regexes for columns that are commmon to ctest_metadata
 common_data = {
     "REPO": re.compile(r"^https://github.com/apache/hadoop.git$"),
     "SHA": re.compile(r"^a3b9c37a397ad4188041dd80621bdeefc46885f2$"),
     "TEST_NAME": re.compile(r"^.*#.*$"),
 }
-
-
-def check_header(header, valid_dict, filename, log):
-    """Validates that the header is correct."""
-
-    if not header == valid_dict["columns"]:
-
-        # Check that columns are properly formatted
-        log_esp_error(filename, log, "The header is improperly formatted")
-
 
 def check_common_rules(filename, row, i, log):
     """
@@ -41,7 +30,7 @@ def check_common_rules(filename, row, i, log):
         log_std_error(filename, log, i, row, "TEST_NAME")
 
 
-def check_row_length(header_len, filename, row, i, log):
+def check_row_length(filename, row, i, log, header_len=7):
     """Checks that each row has the required length."""
 
     if len(row) != header_len:
@@ -57,27 +46,25 @@ def check_row_length(header_len, filename, row, i, log):
         )
 
 
-def run_checks(file, data_dict, log, checks):
+def run_checks(file, begin_line, end_line, data_dict, log, checks):
     """Checks rule compliance for any given dataset file."""
 
     with open(file, newline="") as csvfile:
-        info = csv.DictReader(csvfile, data_dict["columns"])
-        header = next(info)
-        check_header(list(header.values()), data_dict, file, log)
-        for i, row in enumerate(info):
-            i += 2
-            line = str(i)
+        info = csv.DictReader(csvfile, data_dict["columns"], delimiter='\t')
+        for i in range(begin_line-1):
+            next(info)
 
-            params = [file, row, line, log]
+        for i in range(end_line-begin_line+1):
+            line = str(begin_line+i)
+            content = next(info)
+            params = [file, content, line, log]
             for check_rule in checks:
-                if check_rule.__name__ == check_row_length.__name__:
-                    check_rule(len(header), *params)
-                    continue
                 check_rule(*params)
 
 
     with open(file, 'rb') as fp:
         for line in fp:
             if line.endswith(b'\r\n'):
+                print(line)
                 log_esp_error(file, log, "Incorrect End of Line encoding")
                 break

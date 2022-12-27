@@ -45,13 +45,12 @@ def check_expectation(filename, row, i, log):
         log_std_error(filename, log, i, row, "EXPECTATION(PASS|FAIL)")
 
 
-def run_checks_pr(log, filename):
-    """Checks that pr-data.csv is properly formatted."""
+def run_checks_pr(log, filename, begin_line, end_line):
+    """Checks that the PR is properly formatted."""
 
     checks = [
         check_row_length,
         check_common_rules,
-        check_type,
         check_expectation,
     ]
-    run_checks(filename, meta_data, log, checks)
+    run_checks(filename, begin_line, end_line, meta_data, log, checks)

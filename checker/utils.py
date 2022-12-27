@@ -1,8 +1,11 @@
 """Contains helper functions used in other modules."""
 
+import os
 import re
 import subprocess
 
+checker_path = os.path.dirname(os.path.abspath(__file__))
+root_path = os.path.join(checker_path, "..")
 
 def log_info(filename, log, message):
     """Logs a merely informational message."""
