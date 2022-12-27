@@ -10,15 +10,15 @@ from all_parameter_checks import check_whole_parameters
 from result_checks import check_result
 
 if __name__ == "__main__":
-    # if len(sys.argv) != 4:
-    #     print("Usage: python3 main.py <filename> <begin_line> <end_line>")
-    #     sys.exit()
-    # if int(sys.argv[2]) <= 1:
-    #     print("<begin_line> should be greater than 1")
-    #     sys.exit()
-    # if int(sys.argv[3]) < int(sys.argv[2]):
-    #     print("<end_line> should be greater than or equal to <begin_line>")
-    #     sys.exit()
+    if len(sys.argv) != 4:
+        print("Usage: python3 main.py <filename> <begin_line> <end_line>")
+        sys.exit()
+    if int(sys.argv[2]) <= 1:
+        print("<begin_line> should be greater than 1")
+        sys.exit()
+    if int(sys.argv[3]) < int(sys.argv[2]):
+        print("<end_line> should be greater than or equal to <begin_line>")
+        sys.exit()
     
     error_handler = errorhandler.ErrorHandler()
     stream_handler = logging.StreamHandler(stream=sys.stderr)
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     log_warning.tracker = 0
     checks = [run_checks_pr, check_whole_parameters, check_result]
     for check in checks:
-        check(logger, "../new.csv", 2, 3)
+        check(logger, sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
     ERROR_COUNT = str(log_std_error.tracker + log_esp_error.tracker)
 
     if error_handler.fired:
