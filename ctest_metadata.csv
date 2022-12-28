@@ -856,3 +856,4 @@ https://github.com/apache/hadoop.git	a3b9c37a397ad4188041dd80621bdeefc46885f2	ha
 https://github.com/apache/hadoop.git	a3b9c37a397ad4188041dd80621bdeefc46885f2	hadoop.security.auth_to_local.mechanism	org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT	HADOOP	GOOD	PASS
 https://github.com/apache/hadoop.git	a3b9c37a397ad4188041dd80621bdeefc46885f2	hadoop.security.auth_to_local.mechanism	org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT	uiuc	BAD	FAIL
 https://github.com/apache/hadoop.git	a3b9c37a397ad4188041dd80621bdeefc46885f2	hadoop.kerberos.min.seconds.before.relogin	org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT	60	GOOD	PASS
+https://github.com/apache/hadoop.git	a3b9c37a397ad4188041dd80621bdeefc46885f2	hadoop.kerberos.min.seconds.before.relogin	org.apache.hadoop.security.TestFixKerberosTicketOrder#testWithDestroyedTGT	60	GOOD	PASS
