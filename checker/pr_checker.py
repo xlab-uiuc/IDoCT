@@ -5,6 +5,8 @@ from utils import log_std_error, log_warning
 from common_checks import (
     check_common_rules,
     check_row_length,
+    check_REPO,
+    check_SHA,
     run_checks,
 )
 
@@ -52,5 +54,7 @@ def run_checks_pr(log, filename, begin_line, end_line):
         check_row_length,
         check_common_rules,
         check_expectation,
+        check_REPO,
+        check_SHA,
     ]
     run_checks(filename, begin_line, end_line, meta_data, log, checks)

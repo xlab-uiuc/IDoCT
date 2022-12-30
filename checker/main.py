@@ -28,7 +28,7 @@ if __name__ == "__main__":
     log_std_error.tracker = 0
     log_esp_error.tracker = 0
     log_warning.tracker = 0
-    checks = [run_checks_pr, check_whole_parameters, check_result]
+    checks = [run_checks_pr, check_whole_parameters]#, check_result]
     for check in checks:
         check(logger, sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
     ERROR_COUNT = str(log_std_error.tracker + log_esp_error.tracker)

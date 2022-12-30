@@ -46,6 +46,44 @@ def check_row_length(filename, row, i, log, header_len=7):
         )
 
 
+def check_REPO(filename, row, i, log):
+    """Checks that the REPO is correct."""
+
+    if row["REPO"] != "https://github.com/apache/hadoop.git":
+        log_std_error(filename, log, i, row, "REPO")
+
+
+def check_SHA(filename, row, i, log):
+    """Checks that the SHA is correct."""
+
+    if row["SHA"] != "a3b9c37a397ad4188041dd80621bdeefc46885f2":
+        log_std_error(filename, log, i, row, "SHA")
+
+
+def check_repeat(filename, log, data_dict, begin_line, end_line):
+    """Checks that no {test, parameter} is repeated in the file."""
+    exist_map = set()
+    with open(filename, newline="") as csvfile:
+        info = csv.DictReader(csvfile, data_dict["columns"], delimiter='\t')
+        for j in range(2, begin_line-1):
+            content = next(info)
+            exist_map.add((content["TEST_NAME"], content["CONFIG_PARAMETER"]))
+        for j in range(begin_line, end_line+1):
+            content = next(info)
+            if (content["TEST_NAME"], content["CONFIG_PARAMETER"]) in exist_map:
+                log_esp_error(
+                    filename,
+                    log,
+                    "Test "
+                    + content["TEST_NAME"] 
+                    + " with parameter "
+                    + content["CONFIG_PARAMETER"]
+                    + " is repeated",
+                )
+            else:
+                exist_map.add((content["TEST_NAME"], content["CONFIG_PARAMETER"]))
+
+
 def run_checks(file, begin_line, end_line, data_dict, log, checks):
     """Checks rule compliance for any given dataset file."""
 
@@ -61,6 +99,7 @@ def run_checks(file, begin_line, end_line, data_dict, log, checks):
             for check_rule in checks:
                 check_rule(*params)
 
+    check_repeat(file, log, data_dict, begin_line, end_line)
 
     with open(file, 'rb') as fp:
         for line in fp:

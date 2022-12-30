@@ -1,0 +1,35 @@
+
+name: check
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v29.0.1
+      - name: Run checker when ctest_metadata.csv is changed
+        if: contains(steps.changed-files.outputs.modified_files, 'ctest_metadata.csv')
+        run: |
+          rm -r *
+          root_dir=$PWD
+          git checkout ${{ github.event.pull_request.base.sha }}
+          begin_line=$(($(wc -l < ctest_metadata.csv)+1))
+          git checkout ${{ github.event.pull_request.head.sha }}
+          end_line=$(wc -l < ctest_metadata.csv)
+          git clone git@github.com:xlab-uiuc/IDoCT.git
+          idoct_dir=$root_dir/IDoCT
+          git clone https://github.com/apache/hadoop.git
+          hadoop_dir=$root_dir/hadoop
+          cd $hadoop_dir
+          git checkout a3b9c37a397ad4188041dd80621bdeefc46885f2
+          git apply $idoct_dir/hadoop/interception.patch
+          mvn -pl hadoop-common-project/hadoop-common -am clean install -DskipTests > build.txt
+          cd $idoct_dir
+          pip3 install errorhandler
+          cd checker
+          python3 main.py $root_dir/ctest_metadata.csv $begin_line $end_line
+          
