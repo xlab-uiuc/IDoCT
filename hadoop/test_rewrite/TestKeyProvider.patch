@@ -1,0 +1,51 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/crypto/key/TestKeyProvider.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/crypto/key/TestKeyProvider.java
+index cb6a1fb31e6..38e6e3f8a2b 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/crypto/key/TestKeyProvider.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/crypto/key/TestKeyProvider.java
+@@ -201,7 +201,11 @@ public KeyVersion getKeyVersion(String versionName)
+     @Override
+     public Metadata getMetadata(String name) throws IOException {
+       if (!"unknown".equals(name)) {
+-        return new Metadata(CIPHER, 128, "description", null, new Date(), 0);
++      Configuration conf = new Configuration();
++        String ci = conf.get("hadoop.security.key.default.cipher").split("/")[0];
++    
++    int bit = conf.getInt("hadoop.security.key.default.bitlength",128);
++        return new Metadata(ci,bit, "description", null, new Date(), 0);
+       }
+       return null;
+     }
+@@ -243,17 +247,27 @@ public void flush() throws IOException {
+   public void testMaterialGeneration() throws Exception {
+     MyKeyProvider kp = new MyKeyProvider(new Configuration());
+     KeyProvider.Options options = new KeyProvider.Options(new Configuration());
+-    options.setCipher(CIPHER);
+-    options.setBitLength(128);
++    // options.setCipher(CIPHER);
++    // options.setBitLength(128);
++    Configuration conf = new Configuration();
++    String ci = conf.get("hadoop.security.key.default.cipher").split("/")[0];
++    
++    int bit = conf.getInt("hadoop.security.key.default.bitlength",128);
++    options.setCipher(ci);
++    options.setBitLength(bit);
+     kp.createKey("hello", options);
+-    Assert.assertEquals(128, kp.size);
+-    Assert.assertEquals(CIPHER, kp.algorithm);
++    // Assert.assertEquals(128, kp.size);
++    // Assert.assertEquals(CIPHER, kp.algorithm);
++    Assert.assertEquals(bit, kp.size);
++    Assert.assertEquals(ci, kp.algorithm);
+     Assert.assertNotNull(kp.material);
+ 
+     kp = new MyKeyProvider(new Configuration());
+     kp.rollNewVersion("hello");
+-    Assert.assertEquals(128, kp.size);
+-    Assert.assertEquals(CIPHER, kp.algorithm);
++    // Assert.assertEquals(128, kp.size);
++    // Assert.assertEquals(CIPHER, kp.algorithm);
++    Assert.assertEquals(bit, kp.size);
++    Assert.assertEquals(ci, kp.algorithm);
+     Assert.assertNotNull(kp.material);
+   }
+

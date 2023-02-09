@@ -1,0 +1,49 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestLdapGroupsMappingWithFailover.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestLdapGroupsMappingWithFailover.java
+index 2f14c735ab6..b132415525c 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestLdapGroupsMappingWithFailover.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestLdapGroupsMappingWithFailover.java
+@@ -87,19 +87,24 @@ public void testDoesNotFailoverWhenDisabled() throws Exception {
+   @Test
+   public void testFailover() throws Exception {
+     Queue<String> ldapUrls = new LinkedList<>();
+-    ldapUrls.add("ldap://test");
+-    ldapUrls.add("ldap://test1");
+-    ldapUrls.add("ldap://test2");
+-
+-    final int numAttempts = 12;
+-    final int numAttemptsBeforeFailover = 2;
+-
+     Configuration conf = getBaseConf();
+-    conf.setStrings(LDAP_URL_KEY, "ldap://test", "ldap://test1",
+-        "ldap://test2");
+-    conf.setInt(LDAP_NUM_ATTEMPTS_KEY, numAttempts);
+-    conf.setInt(LDAP_NUM_ATTEMPTS_BEFORE_FAILOVER_KEY,
+-        numAttemptsBeforeFailover);
++    // string [] urls = conf.get(LDAP_URL_KEY).split(",");
++    //for (int i=0; i < urls.length; i++){
++      //ldapUrls.add(urls[i]);
++    //}
++     ldapUrls.add("ldap://test");
++     ldapUrls.add("ldap://test1");
++     ldapUrls.add("ldap://test2");
++
++    // final int numAttempts = 12;
++    // final int numAttemptsBeforeFailover = 2;
++    final int numAttempts = conf.getInt(LDAP_NUM_ATTEMPTS_KEY,12);
++    final int numAttemptsBeforeFailover = conf.getInt(LDAP_NUM_ATTEMPTS_BEFORE_FAILOVER_KEY,2);
++     conf.setStrings(LDAP_URL_KEY, "ldap://test", "ldap://test1",
++       "ldap://test2");
++    // conf.setInt(LDAP_NUM_ATTEMPTS_KEY, numAttempts);
++    // conf.setInt(LDAP_NUM_ATTEMPTS_BEFORE_FAILOVER_KEY,
++        // numAttemptsBeforeFailover);
+ 
+     // Set the first expected url and add it back to the queue
+     String nextLdapUrl = ldapUrls.remove();
+@@ -138,5 +143,6 @@ public Object answer(InvocationOnMock invocationOnMock)
+     // Test that we made 6 attempts overall
+     verify(getContext(), times(numAttempts)).search(anyString(),
+         anyString(), any(Object[].class), any(SearchControls.class));
++
+   }
+ }
+

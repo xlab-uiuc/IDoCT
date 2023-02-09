@@ -1,0 +1,30 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/metrics2/source/TestJvmMetrics.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/metrics2/source/TestJvmMetrics.java
+index 6fdd64dca7c..4ba3618e6af 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/metrics2/source/TestJvmMetrics.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/metrics2/source/TestJvmMetrics.java
+@@ -36,6 +36,7 @@
+ import org.apache.hadoop.service.ServiceStateException;
+ import org.apache.hadoop.test.GenericTestUtils;
+ import org.apache.hadoop.util.JvmPauseMonitor;
++import org.apache.hadoop.fs.CommonConfigurationKeys;
+ 
+ import java.util.ArrayList;
+ import java.util.Iterator;
+@@ -202,9 +203,20 @@ public void alert(GcTimeMonitor.GcData gcData) {
+     Assert.assertTrue(alerter.numAlerts > 0);
+     Assert.assertTrue(alerter.maxGcTimePercentage >= alertGcPerc);
+   }
+-
++  
++  @Test
++  public void testInputValidation() throws Exception{
++  try {
++      String utm = new     Configuration().get(CommonConfigurationKeys.HADOOP_METRICS_JVM_USE_THREAD_MXBEAN, "badinput");
++    // test if the input is valid
++    Assert.assertTrue(utm == "true" ||utm == "false");
++    } catch (IllegalArgumentException e) {
++      GenericTestUtils.assertExceptionContains("Invalid Input", e);
++    }
++  }
++  
+
