@@ -20,7 +20,7 @@ If doing that tells you you're working with Python 2.7, you should try `python3 
 The dependencies for this tool can be installed running the following from the root directory:
 
 ```
-$ pip install -r format_checker/requirements.txt
+$ pip install requirements.txt
 ```
 
 #### 3. Run the tool
