@@ -1,0 +1,33 @@
+diff --git a/hadoop-common-project/hadoop-common/pom.xml b/hadoop-common-project/hadoop-common/pom.xml
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/http/TestHttpServer.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/http/TestHttpServer.java
+index e0c87e93a9a..4a9a8a39acc 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/http/TestHttpServer.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/http/TestHttpServer.java
+@@ -145,7 +145,7 @@ public void doGet(HttpServletRequest request,
+ 
+   @BeforeClass public static void setup() throws Exception {
+     Configuration conf = new Configuration();
+-    conf.setInt(HttpServer2.HTTP_MAX_THREADS_KEY, MAX_THREADS);
++    //conf.setInt(HttpServer2.HTTP_MAX_THREADS_KEY,MAX_THREADS);
+     server = createTestServer(conf);
+     server.addServlet("echo", "/echo", EchoServlet.class);
+     server.addServlet("echomap", "/echomap", EchoMapServlet.class);
+@@ -202,10 +202,15 @@ public void run() {
+   @Test
+   public void testAcceptorSelectorConfigurability() throws Exception {
+     Configuration conf = new Configuration();
+-    conf.setInt(HttpServer2.HTTP_MAX_THREADS_KEY, MAX_THREADS);
+-    conf.setInt(HttpServer2.HTTP_ACCEPTOR_COUNT_KEY, MAX_THREADS - 2);
+-    conf.setInt(HttpServer2.HTTP_SELECTOR_COUNT_KEY, MAX_THREADS - 2);
++    
++     int max = conf.getInt(HttpServer2.HTTP_MAX_THREADS_KEY,-1);
++    //conf.setInt(HttpServer2.HTTP_MAX_THREADS_KEY, MAX_THREADS);
++    //conf.setInt(HttpServer2.HTTP_ACCEPTOR_COUNT_KEY, MAX_THREADS - 2);
++    //conf.setInt(HttpServer2.HTTP_SELECTOR_COUNT_KEY, MAX_THREADS - 2;
++    conf.setInt(HttpServer2.HTTP_ACCEPTOR_COUNT_KEY, max - 2);
++    conf.setInt(HttpServer2.HTTP_SELECTOR_COUNT_KEY, max - 2);
+     HttpServer2 badserver = createTestServer(conf);
++
+     try {
+       badserver.start();
+       // Should not succeed
