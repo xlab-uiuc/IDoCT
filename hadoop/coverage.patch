@@ -1,0 +1,73 @@
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/util/TestMachineList.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/util/TestMachineList.java
+index 4d26ac55e9c..e54656a1cc6 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/util/TestMachineList.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/util/TestMachineList.java
+@@ -28,7 +28,7 @@
+ import java.util.HashMap;
+ import java.util.Map;
+ 
+-import org.apache.hadoop.thirdparty.com.google.common.net.InetAddresses;;
++import org.apache.hadoop.thirdparty.com.google.common.net.InetAddresses;
+ import org.junit.Test;
+ 
+ public class TestMachineList {
+diff --git a/hadoop-maven-plugins/pom.xml b/hadoop-maven-plugins/pom.xml
+index 78ace4fa777..4e8d94203b8 100644
+--- a/hadoop-maven-plugins/pom.xml
++++ b/hadoop-maven-plugins/pom.xml
+@@ -126,8 +126,8 @@
+       classes during plugin execution when running a build with Clover enabled.
+       -->
+       <plugin>
+-        <groupId>com.atlassian.maven.plugins</groupId>
+-        <artifactId>maven-clover2-plugin</artifactId>
++        <groupId>org.openclover</groupId>
++        <artifactId>clover-maven-plugin</artifactId>
+         <configuration>
+           <skip>true</skip>
+         </configuration>
+diff --git a/pom.xml b/pom.xml
+index 74a036e374a..b191a450f46 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -108,7 +108,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
+     <maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
+     <apache-rat-plugin.version>0.12</apache-rat-plugin.version>
+     <wagon-ssh.version>2.4</wagon-ssh.version>
+-    <maven-clover2-plugin.version>3.3.0</maven-clover2-plugin.version>
++    <clover-maven-plugin.version>4.4.1</clover-maven-plugin.version>
+     <maven-bundle-plugin.version>2.5.0</maven-bundle-plugin.version>
+     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
+     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+@@ -334,9 +334,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
+           </configuration>
+         </plugin>
+         <plugin>
+-          <groupId>com.atlassian.maven.plugins</groupId>
+-          <artifactId>maven-clover2-plugin</artifactId>
+-          <version>${maven-clover2-plugin.version}</version>
++          <groupId>org.openclover</groupId>
++          <artifactId>clover-maven-plugin</artifactId>
++          <version>${clover-maven-plugin.version}</version>
+         </plugin>
+         <plugin>
+           <groupId>org.apache.felix</groupId>
+@@ -663,7 +663,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
+         </property>
+       </activation>
+       <properties>
+-        <cloverLicenseLocation>${user.home}/.clover.license</cloverLicenseLocation>
+         <cloverDatabase>${project.build.directory}/clover/hadoop-coverage.db</cloverDatabase>
+         <!-- NB: This additional parametrization is made in order
+              to be able to re-define these properties with "-Dk=v" maven options.
+@@ -681,8 +680,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
+       <build>
+         <plugins>
+           <plugin>
+-            <groupId>com.atlassian.maven.plugins</groupId>
+-            <artifactId>maven-clover2-plugin</artifactId>
++            <groupId>org.openclover</groupId>
++            <artifactId>clover-maven-plugin</artifactId>
+             <configuration>
+               <includesAllSourceRoots>false</includesAllSourceRoots>
+               <includesTestSourceRoots>true</includesTestSourceRoots>
