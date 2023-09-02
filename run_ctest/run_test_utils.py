@@ -19,7 +19,7 @@ def maven_cmd(test, add_time=False):
     # surefire:test reuses test build from last compilation
     # if you modified the test and want to rerun it, you must use `mvn test`
     test_mode = "surefire:test" if use_surefire else "test"
-    cmd = ["mvn", test_mode, "-Dtest={}".format(test)] + maven_args
+    cmd = ["mvn", test_mode, "-Dtest={}".format(test), "-Pclover"] + maven_args
     if add_time:
         cmd = ["time"] + cmd
     print(">>>>[ctest_core] command: " + " ".join(cmd))
@@ -32,13 +32,11 @@ def strip_ansi(s):
 
 def join_test_string(tests):
     test_by_cls = group_test_by_cls(tests)
-    ret = ""
+    test_strings = []
     for clsname, methods in test_by_cls.items():
-        ret += clsname
-        ret += "#"
-        ret += "+".join(list(methods))
-        ret += ","
-    return ret
+        test_string = clsname + "#" + "+".join(list(methods))
+        test_strings.append(test_string)
+    return ",".join(test_strings)
 
 def group_test_by_cls(tests):
     d = {}
