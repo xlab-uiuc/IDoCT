@@ -1,4 +1,4 @@
-REPO	SHA	CONFIG_PARAMETER	TEST_NAME	VALUE	TYPE(GOOD|BAD)	EXPECTATION(PASS|FAIL)	COVERAGE_CHANGE(YES|NO)
+REPO	SHA	CONFIG_PARAMETER	TEST_NAME	VALUE	TYPE(GOOD|BAD)	RESULT(PASS|FAIL)	COVERAGE_CHANGE(YES|NO)
 https://github.com/apache/hadoop.git	a3b9c37a397ad4188041dd80621bdeefc46885f2	hadoop.security.crypto.cipher.suite	org.apache.hadoop.crypto.TestCryptoStreams#testAvailable	AES/CTR/NoPadding	GOOD	PASS	NO
 https://github.com/apache/hadoop.git	a3b9c37a397ad4188041dd80621bdeefc46885f2	hadoop.security.crypto.cipher.suite	org.apache.hadoop.crypto.TestCryptoStreams#testAvailable	AES/CTR/Padding	BAD	FAIL	YES
 https://github.com/apache/hadoop.git	a3b9c37a397ad4188041dd80621bdeefc46885f2	hadoop.security.groups.cache.secs	org.apache.hadoop.fs.contract.sftp.TestSFTPContractSeek#testReadAtExactEOF	300	GOOD	PASS	NO
