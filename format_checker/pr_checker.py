@@ -5,8 +5,6 @@ from utils import log_std_error, log_warning
 from common_checks import (
     check_common_rules,
     check_row_length,
-    check_REPO,
-    check_SHA,
     run_checks,
 )
 
@@ -21,6 +19,7 @@ meta_data = {
         "VALUE",
         "TYPE(GOOD|BAD)",
         "EXPECTATION(PASS|FAIL)",
+        "COVERAGE_CHANGE(YES|NO)",
     ],
     "Type": [
         "GOOD",
@@ -29,6 +28,10 @@ meta_data = {
     "Expectation": [
         "PASS",
         "FAIL",
+    ],
+    "Coverage change": [
+        "YES",
+        "NO",
     ],
 }
 
@@ -47,14 +50,20 @@ def check_expectation(filename, row, i, log):
         log_std_error(filename, log, i, row, "EXPECTATION(PASS|FAIL)")
 
 
-def run_checks_pr(log, filename, begin_line, end_line):
-    """Checks that the PR is properly formatted."""
+def check_coverage(filename, row, i, log):
+    """Check validity of Expectation."""
+
+    if not row["COVERAGE_CHANGE(YES|NO)"] in meta_data["Coverage change"]:
+        log_std_error(filename, log, i, row, "COVERAGE_CHANGE(YES|NO)")
+        
+def run_checks_pr(log, filename):
+    """Checks that pr-data.csv is properly formatted."""
 
     checks = [
         check_row_length,
         check_common_rules,
+        check_type,
         check_expectation,
-        check_REPO,
-        check_SHA,
+        check_coverage,
     ]
-    run_checks(filename, begin_line, end_line, meta_data, log, checks)
+    run_checks(filename, meta_data, log, checks)
